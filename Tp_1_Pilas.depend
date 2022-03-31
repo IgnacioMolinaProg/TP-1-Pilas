@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1490112217 source:c:\users\nacho\documents\utn\1er cuatrimestre\programacion 1\programas\2022\tp_1_pilas\pila.c
+	"pila.h"
+
+1490112217 c:\users\nacho\documents\utn\1er cuatrimestre\programacion 1\programas\2022\tp_1_pilas\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1648672707 source:c:\users\nacho\documents\utn\1er cuatrimestre\programacion 1\programas\2022\tp_1_pilas\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+
