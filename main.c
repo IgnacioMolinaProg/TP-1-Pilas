@@ -12,7 +12,8 @@ void ejercicio_7();
 void ejercicio_8();
 void ejercicio_9();
 void ejercicio_10();
-
+void ejercicio_11();
+void ejercicio_12();
 int main()
 {
     int ejercicio;
@@ -36,9 +37,13 @@ int main()
         printf("\n8.Repartir los elementos de la pila MAZO en las pilas JUGADOR1 y JUGADOR2 en forma alternativa.\n");
         printf("\n9.Comparar la cantidad de elementos de las pilas A y B. Mostrar por pantalla el resultado\n");
         printf("\n10.Comparar las pilas A y B, evaluando si son completamente iguales (en cantidad de elementos,\n");
-        printf("   valores que contienen y posición de los mismos). Mostrar por pantalla el resultado.\n");
+        printf("   valores que contienen y posicion de los mismos). Mostrar por pantalla el resultado.\n");
+        printf("\n11. Suponiendo la existencia de una pila MODELO que no este vacia, eliminar de la pila DADA todos los\n");
+        printf("    elementos que sean iguales al tope de la pila MODELO\n");
+        printf("\n12. Suponiendo la existencia de una pila MODELO (vacia o no), eliminar de la pila DADA todos los\n");
+        printf("    elementos que existan en MODELO.\n");
         printf("\n0.Salir.\n");
-        printf("\nQue ejercicio desea realizar? [ ]\b\b");
+        printf("\nQue ejercicio desea realizar? [  ]\b\b\b");
         scanf("%i",&ejercicio);
         switch(ejercicio)
         {
@@ -92,6 +97,17 @@ int main()
             ejercicio_10();
             system("pause");
             break;
+        case 11:
+            system("cls");
+            ejercicio_11();
+            system("pause");
+            break;
+        case 12:
+            system("cls");
+            ejercicio_12();
+            system("pause");
+            break;
+
         case 0:
             break;
         }
@@ -328,11 +344,76 @@ void ejercicio_10()
     if(!pilavacia(&pilaA)||!pilavacia(&pilaB))//si una de las pila quedo con un elemento
         sonIguales='n';
     if(sonIguales=='s')
-        printf("\n\nLas dos pilas son identicas.\n");
+        printf("\nLas dos pilas son identicas.\n\n");
     else
-        printf("\n\nLas dos pilas son distintas.\n");
+        printf("\nLas dos pilas son distintas.\n\n");
     while(!pilavacia(&auxA))
         apilar(&pilaA,desapilar(&auxA));
     while(!pilavacia(&auxB))
         apilar(&pilaB,desapilar(&auxB));
 }
+void ejercicio_11()
+{
+    Pila modelo,dada,auxDada,eliminados;
+    inicpila(&modelo);
+    inicpila(&dada);
+    inicpila(&auxDada);
+    inicpila(&eliminados);
+    apilar(&modelo,3);
+    apilar(&modelo,8);
+    apilar(&modelo,2);
+    apilar(&modelo,6);
+    cargarPila(&dada);
+    printf("\nPila Modelo:");
+    mostrar(&modelo);
+    //si los elementos de dada son igual al tope de modelo los elimino
+    while(!pilavacia(&dada))
+    {
+        if(tope(&modelo)==tope(&dada))
+            apilar(&eliminados,desapilar(&dada));
+        else
+            apilar(&auxDada,desapilar(&dada));
+    }
+    //vuelvo los datos a dada
+    while(!pilavacia(&auxDada))
+        apilar(&dada,desapilar(&auxDada));
+    printf("Pila aux:");
+    mostrar(&dada);
+}
+void ejercicio_12()
+{
+    Pila modelo,dada,auxDada,auxModelo,eliminados;
+    inicpila(&modelo);
+    inicpila(&dada);
+    inicpila(&auxModelo);
+    inicpila(&auxDada);
+    inicpila(&eliminados);
+    apilar(&modelo,2);
+    apilar(&modelo,9);
+    apilar(&modelo,3);
+    /////////////////////
+    modelo.postope=4;
+    modelo.valores[3]=9;
+    //////////////////////////
+    mostrar(&modelo);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
